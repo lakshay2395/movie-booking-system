@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_230208) do
 
   create_table "regions", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "region_type"
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
