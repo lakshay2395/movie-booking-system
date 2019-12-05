@@ -10,3 +10,5 @@ rails generate model Booking user:references show:references seats:integer
 
 # Important Commands
 bundle exec rspec
+rails db:migrate
+RAILS_ENV=test rails db:migrate

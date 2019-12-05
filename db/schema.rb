@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2019_12_03_230208) do
 
   create_table "halls", force: :cascade do |t|
     t.string "name"
-    t.string "address"
     t.integer "seats"
     t.integer "theatre_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -67,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_230208) do
 
   create_table "theatres", force: :cascade do |t|
     t.string "name"
+    t.string "address"
     t.integer "region_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
