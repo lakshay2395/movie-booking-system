@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_230208) do
 
   create_table "regions", force: :cascade do |t|
     t.string "name"
-    t.string "region_type"
+    t.integer "region_type"
     t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2019_12_03_230208) do
     t.integer "available_seats"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["hall_id", "movie_id", "timing_id"], name: "index_shows_on_hall_id_and_movie_id_and_timing_id", unique: true
+    t.index ["hall_id", "movie_id", "show_date", "timing_id"], name: "unique_show_index", unique: true
     t.index ["hall_id"], name: "index_shows_on_hall_id"
     t.index ["movie_id"], name: "index_shows_on_movie_id"
     t.index ["timing_id"], name: "index_shows_on_timing_id"

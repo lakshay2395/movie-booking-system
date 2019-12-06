@@ -1,3 +1,21 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :regions do
+    resources :theatres do
+      resources :halls do
+        resources :shows, only: [:index, :show]
+      end 
+    end
+  end
+
+  resources :shows do
+    resources :bookings, only: [:index, :show, :create, :destroy, :update]
+  end
+  
+  resources :users
+
+  resources :movies
+
+  resources :timings
+
 end
