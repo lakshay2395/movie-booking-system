@@ -7,43 +7,24 @@ class TimingsController < ApplicationController
     TIMING_NOT_FOUND = 'No timing found for id %s'.freeze
 
     def index
-        render json: @timings, status: :ok
+        index_model(@timings)
     end
 
     def show
-        if @timing
-            render json: @timing, status: :ok
-        else
-            handle_error(TIMING_NOT_FOUND % [id],:not_found)
-        end
+        show_model(@timing, TIMING_NOT_FOUND % [id], :not_found)
     end
 
     def create
        timing = Timing.new(name: name, start_time: start_time, end_time: end_time) 
-       if timing.valid?
-            timing.save! 
-            render json: timing, status: :created
-       else
-            handle_error(timing.errors.messages,:internal_server_error)
-       end
+       create_or_update_model(timing)
     end
 
     def destroy
-        if @timing
-            @timing.destroy!
-            render json: nil, status: :no_content
-        else
-            handle_error(TIMING_NOT_FOUND % [id],:not_found)
-        end
+        destroy_model(@timing, TIMING_NOT_FOUND % [id], :not_found)
     end 
 
     def update
-        if @timing.valid?
-            @timing.save!
-            render json: @timing, status: :ok
-        else 
-            handle_error(@timing.errors.messages,:internal_server_error)
-        end
+        create_or_update_model(@timing)
     end
 
     private

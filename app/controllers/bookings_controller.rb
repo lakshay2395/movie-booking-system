@@ -7,43 +7,24 @@ class BookingsController < ShowsController
     BOOKING_NOT_FOUND = 'No booking found for id %s for show with id %s'.freeze
 
     def index
-        render json: @bookings, status: :ok
+        index_model(@bookings)
     end
 
     def show
-        if @booking
-            render json: @booking, status: :ok
-        else
-            handle_error(BOOKING_NOT_FOUND % [id, show_id],:not_found)
-        end
+        show_model(@booking,BOOKING_NOT_FOUND % [id, show_id],:not_found)
     end
 
     def create
        booking = Booking.new(show: show_data, user: user, seats: seats) 
-       if booking.valid?
-            Booking.create_booking(booking)
-            render json: booking, status: :created
-       else
-            handle_error(booking.errors.messages,:internal_server_error)
-       end
+       create_or_update_model(booking)
     end
 
     def destroy
-        if @booking
-            Booking.delete_booking(@booking)
-            render json: nil, status: :no_content
-        else
-            handle_error(BOOKING_NOT_FOUND % [id, show_id],:not_found)
-        end
+        destroy_model(@booking,BOOKING_NOT_FOUND % [id, show_id],:not_found)
     end 
 
     def update
-        if @booking.valid?
-            Booking.update_booking(@booking,seats)
-            render json: @booking, status: :ok
-        else 
-            handle_error(@booking.errors.messages,:internal_server_error)
-        end
+        create_or_update_model(@booking)
     end
 
     private
@@ -73,7 +54,7 @@ class BookingsController < ShowsController
     end
 
     def fetch_all
-        @bookings = Booking.find_by(show: show_data)
+        @bookings = Booking.where(show: show_data)
     end
 
     def update_booking_details_before_save

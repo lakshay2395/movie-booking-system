@@ -7,43 +7,24 @@ class RegionsController < ApplicationController
     REGION_NOT_FOUND = 'No region found for id %s'.freeze
 
     def index
-        render json: @regions, status: :ok
+        index_model(@regions)
     end
 
     def show
-        if @region
-            render json: @region, status: :ok
-        else
-            handle_error(REGION_NOT_FOUND % [id],:not_found)
-        end
+        show_model(@region,REGION_NOT_FOUND % [id],:not_found)
     end
 
     def create
        region = Region.new(name: name, region_type: region_type, parent: parent) 
-       if region.valid?
-            region.save!
-            render json: region, status: :created
-       else
-            handle_error(region.errors.messages,:internal_server_error)
-       end
+       create_or_update_model(region)
     end
 
     def destroy
-        if @region
-            @region.destroy!
-            render json: nil, status: :no_content
-        else
-            handle_error(REGION_NOT_FOUND % [id],:not_found)
-        end
+        destroy_model(@region,REGION_NOT_FOUND % [id],:not_found)
     end 
 
     def update
-        if @region.valid?
-            @region.save!
-            render json: @region, status: :ok
-        else 
-            handle_error(@region.errors.messages,:internal_server_error)
-        end
+        create_or_update_model(@region)
     end
 
     private

@@ -7,43 +7,24 @@ class HallsController < TheatresController
     HALL_NOT_FOUND = 'No hall found for id %s'.freeze
 
     def index
-        render json: @halls, status: :ok
+        index_model(@halls)
     end
 
     def show
-        if @hall
-            render json: @hall, status: :ok
-        else
-            handle_error(HALL_NOT_FOUND % [id],:not_found)
-        end
+        show_model(@hall,HALL_NOT_FOUND % [id],:not_found)
     end
 
     def create
        hall = Hall.new(name: name, seats: seats, theatre: theatre) 
-       if hall.valid?
-            hall.save! 
-            render json: hall, status: :created
-       else
-            handle_error(hall.errors.messages,:internal_server_error)
-       end
+       create_or_update_model(hall)
     end
 
     def destroy
-        if @hall
-            @hall.destroy!
-            render json: nil, status: :no_content
-        else
-            handle_error(HALL_NOT_FOUND % [id],:not_found)
-        end
+        destroy_model(@hall,HALL_NOT_FOUND % [id],:not_found)
     end 
 
     def update
-        if @hall.valid?
-            @hall.save!
-            render json: @hall, status: :ok
-        else 
-            handle_error(@hall.errors.messages,:internal_server_error)
-        end
+        create_or_update_model(@hall)
     end
 
     private
@@ -65,7 +46,7 @@ class HallsController < TheatresController
     end
 
     def fetch_all
-        @halls = Hall.all
+        @halls = Hall.where(theatre: theatre)
     end
 
     def update_hall_details_before_save

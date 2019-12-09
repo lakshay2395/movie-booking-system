@@ -7,43 +7,24 @@ class UsersController < ApplicationController
     USER_NOT_FOUND = 'No user found for id %s'.freeze
 
     def index
-        render json: @users, status: :ok
+        index_model(@users)
     end
 
     def show
-        if @user
-            render json: @user, status: :ok
-        else
-            handle_error(USER_NOT_FOUND % [id],:not_found)
-        end
+        show_model(@user,USER_NOT_FOUND % [id],:not_found)
     end
 
     def create
        user = User.new(first_name: first_name, last_name: last_name, email_id: email_id, password: password) 
-       if user.valid?
-            user.save! 
-            render json: user, status: :created
-       else
-            handle_error(user.errors.messages,:internal_server_error)
-       end
+       create_or_update_model(user)
     end
 
     def destroy
-        if @user
-            @user.destroy!
-            render json: nil, status: :no_content
-        else
-            handle_error(USER_NOT_FOUND % [id],:not_found)
-        end
+        destroy_model(@user,USER_NOT_FOUND % [id],:not_found)
     end 
 
     def update
-        if @user.valid?
-            @user.save!
-            render json: @user, status: :ok
-        else 
-            handle_error(@user.errors.messages,:internal_server_error)
-        end
+        create_or_update_model(@user)
     end
 
     private

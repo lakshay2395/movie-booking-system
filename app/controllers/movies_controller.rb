@@ -7,43 +7,24 @@ class MoviesController < ApplicationController
     MOVIE_NOT_FOUND = 'No movie found for id %s'.freeze
 
     def index
-        render json: @movies, status: :ok
+        index_model(@movies)
     end
 
     def show
-        if @movie
-            render json: @movie, status: :ok
-        else
-            handle_error(MOVIE_NOT_FOUND % [id],:not_found)
-        end
+        show_model(@movie, MOVIE_NOT_FOUND % [id], :not_found)
     end
 
     def create
        movie = Movie.new(name: name, director_name: director_name, release_date: release_date,is_active: is_active) 
-       if movie.valid?
-            movie.save! 
-            render json: movie, status: :created
-       else
-            handle_error(movie.errors.messages,:internal_server_error)
-       end
+       create_or_update_model(movie)
     end
 
     def destroy
-        if @movie
-            @movie.destroy!
-            render json: nil, status: :no_content
-        else
-            handle_error(MOVIE_NOT_FOUND % [id],:not_found)
-        end
+        destroy_model(@movie, MOVIE_NOT_FOUND % [id], :not_found)
     end 
 
     def update
-        if @movie.valid?
-            @movie.save!
-            render json: @movie, status: :ok
-        else 
-            handle_error(@movie.errors.messages,:internal_server_error)
-        end
+        create_or_update_model(@movie)
     end
 
     private

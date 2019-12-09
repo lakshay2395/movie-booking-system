@@ -7,43 +7,24 @@ class ShowsController < HallsController
     SHOW_NOT_FOUND = 'No show found for id %s'.freeze
 
     def index
-        render json: @shows, status: :ok
+        index_model(@shows)
     end
 
     def show
-        if @show
-            render json: @show, status: :ok
-        else
-            handle_error(SHOW_NOT_FOUND % [id],:not_found)
-        end
+        show_model(@show,SHOW_NOT_FOUND % [id],:not_found)
     end
 
     def create
        show = Show.new(movie: movie, hall: hall, timing: timing, show_date: show_date, seat_price: seat_price, available_seats: available_seats) 
-       if show.valid?
-            show.save!
-            render json: show, status: :created
-       else
-            handle_error(show.errors.messages,:internal_server_error)
-       end
+       create_or_update_model(show)
     end
 
     def destroy
-        if @show
-            @show.destroy!
-            render json: nil, status: :no_content
-        else
-            handle_error(SHOW_NOT_FOUND % [id],:not_found)
-        end
+        destroy_model(@show,SHOW_NOT_FOUND % [id],:not_found)
     end 
 
     def update
-        if @show.valid?
-            @show.save!
-            render json: @show, status: :ok
-        else 
-            handle_error(@show.errors.messages,:internal_server_error)
-        end
+        create_or_update_model(@show)
     end
 
     private
@@ -89,7 +70,7 @@ class ShowsController < HallsController
     end
 
     def fetch_all
-        @shows = Show.all
+        @shows = Show.where(hall: hall)
     end
 
     def update_show_details_before_save

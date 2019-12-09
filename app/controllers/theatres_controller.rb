@@ -7,43 +7,24 @@ class TheatresController < RegionsController
     THEATRE_NOT_FOUND = 'No theatre found for id %s'.freeze
 
     def index
-        render json: @theatres, status: :ok
+        index_model(@theatres)
     end
 
     def show
-        if @theatre
-            render json: @theatre, status: :ok
-        else
-            handle_error(THEATRE_NOT_FOUND % [id],:not_found)
-        end
+        show_model(@theatre,THEATRE_NOT_FOUND % [id], :not_found)
     end
 
     def create
        theatre = Theatre.new(name: name, address: address, region: region) 
-       if theatre.valid?
-            theatre.save! 
-            render json: theatre, status: :created
-       else
-            handle_error(theatre.errors.messages,:internal_server_error)
-       end
+       create_or_update_model(theatre)
     end
 
     def destroy
-        if @theatre
-            @theatre.destroy!
-            render json: nil, status: :no_content
-        else
-            handle_error(THEATRE_NOT_FOUND % [id],:not_found)
-        end
+        destroy_model(@theatre,THEATRE_NOT_FOUND % [id],:not_found)
     end 
 
     def update
-        if @theatre.valid?
-            @theatre.save!
-            render json: @theatre, status: :ok
-        else 
-            handle_error(@theatre.errors.messages,:internal_server_error)
-        end
+        create_or_update_model(@theatre)
     end
 
     private
@@ -65,7 +46,7 @@ class TheatresController < RegionsController
     end
 
     def fetch_all
-        @theatres = Theatre.all
+        @theatres = Theatre.where(region: region)
     end
 
     def update_theatre_details_before_save
