@@ -1,6 +1,7 @@
 # Movie Booking System
 
-Sample movie booking system implemented in rails
+Sample movie booking system implemented in rails.
+Database schema: [Link](https://ibb.co/PZ9GtC2)
 
 # Setup
  - Installation
