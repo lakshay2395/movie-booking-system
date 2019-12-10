@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Booking, type: :model do
   let(:user_one) do
-    User.new(id: 100, first_name: 'Lakshay', last_name: 'Bhambri', email_id: 'bhambri.lakshay.lakshay@gmail.com', password: '1234')
+    User.new(id: 100, first_name: 'Lakshay', last_name: 'Bhambri', email_id: 'bhambri@gmail.com', password: '1234')
   end
 
   let(:region_one) do
@@ -51,6 +51,11 @@ RSpec.describe Booking, type: :model do
       show = Show.find_by(id: show_one.id)
       expect(show_one.available_seats).to eq(8)
     end
+    it "should not run" do
+      booking = booking_one
+      booking.seats = 0
+      expect { Booking.create_booking(booking) }.to raise_error(ArgumentError)
+    end
   end
 
   describe 'test update_booking transaction' do
@@ -71,4 +76,5 @@ RSpec.describe Booking, type: :model do
       expect(show_one.available_seats).to eq(10)
     end
   end
+
 end

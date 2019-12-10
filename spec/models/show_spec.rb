@@ -51,8 +51,27 @@ RSpec.describe Show, type: :model do
     expect(Show.new(movie: movie_one, hall: hall_one, timing: timing_one, show_date: '2019-12-02', seat_price: 0, available_seats: 10)).to_not be_valid
   end
 
+  it 'is not valid with available seats less than 0' do
+    show = Show.new(movie: movie_one, hall: hall_one, timing: timing_one, show_date: '2019-12-02', seat_price: 10, available_seats: -1)
+    expect { show.save! }.to raise_error(ArgumentError)
+  end
+
   it 'is not valid with available seats more than hall seat count' do
     show = Show.new(movie: movie_one, hall: hall_one, timing: timing_one, show_date: '2019-12-02', seat_price: 10, available_seats: 11)
+    expect { show.save! }.to raise_error(ArgumentError)
+  end
+
+  it 'is not valid with available seats more than hall seat count on update' do
+    show = Show.new(movie: movie_one, hall: hall_one, timing: timing_one, show_date: '2019-12-02', seat_price: 10, available_seats: 10)
+    show.save!
+    show.available_seats = 11
+    expect { show.save! }.to raise_error(ArgumentError)
+  end
+
+  it 'is not valid with available seats less than 0 count on update' do
+    show = Show.new(movie: movie_one, hall: hall_one, timing: timing_one, show_date: '2019-12-02', seat_price: 10, available_seats: 10)
+    show.save!
+    show.available_seats = -1
     expect { show.save! }.to raise_error(ArgumentError)
   end
 end

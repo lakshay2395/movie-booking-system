@@ -11,12 +11,15 @@ class Show < ApplicationRecord
     if show.available_seats > show.hall.seats
       raise ArgumentError, 'Available seats for the show cannot be more than seats in hall'
     end
+    if show.available_seats < 0
+      raise ArgumentError, 'Available seats for the show cannot be less than zero'
+    end
   end
   before_update do |show|
     if show.available_seats > show.hall.seats
       raise ArgumentError, 'Available seats for the show cannot be more than seats in hall'
     end
-    if show.available_seats <= 0
+    if show.available_seats < 0
       raise ArgumentError, 'Available seats for the show cannot be less than zero'
     end
   end

@@ -19,7 +19,7 @@ RSpec.describe UsersController, type: :controller do
         id: '1',
         first_name: 'Lakshay',
         last_name: 'Bhambri',
-        email_id: 'bhambri.lakshay@gmail.com',
+        email_id: 'balle@gmail.com',
         password: '1234'
       ),
       User.new(
@@ -76,7 +76,7 @@ RSpec.describe UsersController, type: :controller do
     context 'failure' do
       it 'should not run because of duplicate id' do
         item = user
-        user['email_id'] = 'bhambri.lakshay@gmail.com'
+        user['email_id'] = 'balle@gmail.com'
         post :create, params: user
         expect(response.status).to eq(500)
         expect(JSON.parse(response.body)['error']['email_id']).to eq(['has already been taken'])
@@ -112,7 +112,7 @@ RSpec.describe UsersController, type: :controller do
       it 'should not run because of duplicate id' do
         item = user
         item[:id] = 2
-        item[:email_id] = 'bhambri.lakshay@gmail.com'
+        item[:email_id] = 'balle@gmail.com'
         put :update, params: item
         expect(response.status).to eq(405)
       end
