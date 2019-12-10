@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Theatre < ApplicationRecord
   belongs_to :region
 

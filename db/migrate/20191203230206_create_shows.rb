@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateShows < ActiveRecord::Migration[6.0]
   def change
     create_table :shows do |t|
@@ -7,7 +9,7 @@ class CreateShows < ActiveRecord::Migration[6.0]
       t.references :timing, null: false, foreign_key: true
       t.float :seat_price
       t.integer :available_seats
-      
+
       t.timestamps
     end
   end
