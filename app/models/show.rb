@@ -10,7 +10,7 @@ class Show < ApplicationRecord
   before_create do |show|
     if show.available_seats > show.hall.seats
       raise ArgumentError, 'Available seats for the show cannot be more than seats in hall'
-      end
+    end
   end
   before_update do |show|
     if show.available_seats > show.hall.seats
