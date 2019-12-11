@@ -1,0 +1,688 @@
+{
+	"info": {
+		"_postman_id": "ba30ef9f-0e41-45c2-b6e8-2b9607473516",
+		"name": "Movie Booking System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\" : \"Srishty\",\n\t\"last_name\" : \"Bhambri\",\n\t\"email_id\" : \"srishty123@gmail.com\",\n\t\"password\" : \"srishty26\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update User",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 2,\n    \"first_name\": \"Srishty\",\n    \"last_name\": \"Bhambri\",\n    \"email_id\": \"srishtycool16@gmail.com\",\n    \"password\": \"srishty26\",\n    \"created_at\": \"2019-12-06T10:25:15.880Z\",\n    \"updated_at\": \"2019-12-06T10:25:15.880Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/users/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/users/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Movie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"Lakshya\",\n\t\"director_name\": \"Farhan Akhtar\",\n\t\"release_date\" : \"2003-02-12\",\n\t\"is_active\" : false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movies",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Movies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Movie",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 2,\n    \"name\": \"Dunkirk\",\n    \"director_name\": \"Christopher Nolan\",\n    \"release_date\": \"2018-12-02\",\n    \"is_active\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movies/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Movie",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Timing",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"T2\",\n\t\"start_time\" : \"10:00:00\",\n\t\"end_time\" : \"12:00:00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/timings",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"timings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Timing",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/timings",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"timings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Timing",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"name\": \"T1\",\n    \"start_time\": \"2000-01-01T19:00:00.000Z\",\n    \"end_time\": \"2000-01-01T21:00:00.000Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/timings/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"timings",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Timing",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/timings/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"timings",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Regions",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"BANGALORE\",\n\t\"region_type\" : \"AREA\",\n\t\"parent_id\" : 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/regions",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Region",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/regions/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regions",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Region",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"BANGALORE\",\n\t\"region_type\" : \"CITY\",\n\t\"parent_id\" : 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/regions",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Region",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/regions",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Theatre",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"T2\",\n\t\"address\" : \"A1\",\n\t\"region_id\" : \"2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/regions/1/theatres",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regions",
+						"1",
+						"theatres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Theatres",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/regions/1/theatres",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regions",
+						"1",
+						"theatres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Theatre",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/regions/1/theatres/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regions",
+						"1",
+						"theatres",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Theatre",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 2,\n    \"name\": \"T1\",\n    \"address\": \"A1\",\n    \"created_at\": \"2019-12-06T13:33:53.217Z\",\n    \"updated_at\": \"2019-12-06T13:33:53.217Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/regions/1/theatres/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regions",
+						"1",
+						"theatres",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Halls",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/regions/1/theatres/2/halls",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regions",
+						"1",
+						"theatres",
+						"2",
+						"halls"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Hall",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"H1\",\n\t\"seats\" : 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/regions/1/theatres/2/halls",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regions",
+						"1",
+						"theatres",
+						"2",
+						"halls"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Hall",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/regions/1/theatres/2/halls/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regions",
+						"1",
+						"theatres",
+						"2",
+						"halls",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Shows",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"movie_id\" : 1,\n\t\"hall_id\" : 2,\n\t\"show_date\" : \"2019-12-06\",\n\t\"timing_id\" : 1,\n\t\"seat_price\" : 100,\n\t\"available_seats\" : 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/shows",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"shows"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get shows",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/regions/1/theatres/2/halls/2/shows",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"regions",
+						"1",
+						"theatres",
+						"2",
+						"halls",
+						"2",
+						"shows"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
