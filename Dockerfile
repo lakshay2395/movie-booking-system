@@ -7,7 +7,7 @@ ADD Gemfile.lock /myapp/Gemfile.lock
 RUN gem install bundler:2.0.2
 RUN gem update bundler
 RUN bundle install
-RUN JRUBY_OPTS="--debug" bundle exec rspec
 ADD . /myapp
+RUN JRUBY_OPTS="--debug" bundle exec rspec 
 EXPOSE 8080
 ENTRYPOINT ["rails", "s" , "-p" , "8080", "-b" , "0.0.0.0"]
